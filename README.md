@@ -27,7 +27,7 @@ src/
 └── Main.java        # Menú interactivo en consola y punto de entrada
 
 ## 📐 Diagrama de Clases
-
+Markdown
 ```mermaid
 classDiagram
     class Artesano {
