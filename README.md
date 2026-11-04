@@ -4,10 +4,10 @@ Sistema desarrollado en **Java** bajo una arquitectura modular orientada a objet
 
 ---
 
-## 🚀 Características Principales
+## Características Principales
 * **Gestión de Artesanos:** Registro y validación de datos de artesanos (cédula, nombre, comunidad, teléfono).
 * **Control de Inventario y Consignación:** Registro de nuevas piezas, reabastecimiento de stock y control de plazos de devolución (90 días).
-* **Reglas de Negocio Automatizadas:** 
+* **Reglas de Negocio Automatizadas:**
   * Comisión del **20%** para productos tipo `TEXTIL`.
   * Comisión del **25%** para productos tipo `MADERA`.
 * **Procesamiento de Ventas y Auditoría:** Descuento automático de stock y registro cronológico de movimientos.
@@ -16,7 +16,7 @@ Sistema desarrollado en **Java** bajo una arquitectura modular orientada a objet
 
 ---
 
-## 🛠️ Estructura del Proyecto
+## Estructura del Proyecto
 El código fuente está organizado en los siguientes paquetes:
 ```text
 src/
@@ -26,7 +26,8 @@ src/
 ├── datos/           # Manejador de persistencia de archivos CSV (ArchivoManager)
 └── Main.java        # Menú interactivo en consola y punto de entrada
 
-## 📐 Diagrama de Clases
+## Diagrama de Clases
+
 Markdown
 ```mermaid
 classDiagram
