@@ -28,43 +28,93 @@ src/
 
 ## 📐 Diagrama de Clases
 
-A continuación se muestra la estructura y relaciones principales entre las clases del sistema de la Tienda de Artesanías:
-
 ```mermaid
 classDiagram
     class Artesano {
-        - String id
-        - String nombre
-        - String comunidad
-        - String telefono
-        + getId() String
-        + getNombre() String
-        + getComunidad() String
+        -String id
+        -String nombre
+        -String comunidad
+        -String telefono
+        +getId() String
+        +getNombre() String
+        +getComunidad() String
+        +getTelefono() String
+        +aCsv() String
+        +desdeCsv(linea) Artesano
     }
 
     class Artesania {
-        - String codigo
-        - String nombre
-        - String tipo
-        - double precioVenta
-        - int stockActual
-        - LocalDate fechaRecepcion
-        - String artesanoId
-        + calcularComisionUnitaria() double
-        + debeDevolverse() boolean
-        + setStock(int stock)
-        + getCodigo() String
+        -String codigo
+        -String nombre
+        -String tipo
+        -double precioVenta
+        -int stockActual
+        -LocalDate fechaRecepcion
+        -String artesanoId
+        +calcularComisionUnitaria() double
+        +debeDevolverse() boolean
+        +setStockActual(stock)
+        +setStock(stock)
+        +getCodigo() String
+        +getNombre() String
+        +getTipo() String
+        +getPrecioVenta() double
+        +getStockActual() int
+        +getFechaRecepcion() LocalDate
+        +getArtesanoId() String
+        +aCsv() String
+        +desdeCsv(linea) Artesania
     }
 
     class Movimiento {
-        - String idMovimiento
-        - String codigoArtesania
-        - String tipoMovimiento
-        - int cantidad
-        - LocalDate fecha
-        + getTipoMovimiento() String
-        + getCantidad() int
+        -String idMovimiento
+        -String codigoArtesania
+        -String tipoMovimiento
+        -int cantidad
+        -LocalDate fecha
+        +getIdMovimiento() String
+        +getCodigoArtesania() String
+        +getTipoMovimiento() String
+        +getCantidad() int
+        +getFecha() LocalDate
+        +aCsv() String
+        +desdeCsv(linea) Movimiento
     }
 
-    Artesano "1" --> "*" Artesania : posee
-    Artesania "1" --> "*" Movimiento : genera
+    class TiendaOtavalo {
+        -List~Artesano~ artesanos
+        -List~Artesania~ artesanias
+        -List~Movimiento~ movimientos
+        +cargarDatos()
+        +guardarDatos()
+        +registrarArtesano(a) boolean
+        +eliminarArtesano(id) boolean
+        +registrarRecepcion(a) boolean
+        +reabastecerArtesania(codigo, cantidad) boolean
+        +registrarVenta(codigo, cantidad) boolean
+        +registrarDevolucion(codigo, cantidad, artesanoId) boolean
+        +reporteLiquidacionArtesano(artesanoId)
+        +reporteDevolucionesPendientes()
+        +reporteArtesaniasMasVendidas()
+        +reporteComunidadesConMasVentas()
+        +reporteAuditoriaStock()
+    }
+
+    class ArchivoManager {
+        +inicializarDirectorio()
+        +leerLista(archivo) List~String~
+        +guardarLista(archivo, lineas)
+    }
+
+    class Main {
+        +main(args)
+    }
+
+    Artesano "1" <-- "*" Artesania : pertenece a
+    Artesania "1" <-- "*" Movimiento : registra
+    TiendaOtavalo "1" o-- "*" Artesano
+    TiendaOtavalo "1" o-- "*" Artesania
+    TiendaOtavalo "1" o-- "*" Movimiento
+    TiendaOtavalo ..> ArchivoManager : usa
+    Main ..> TiendaOtavalo : interactúa
+```
