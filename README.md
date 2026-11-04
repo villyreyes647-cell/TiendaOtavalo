@@ -28,7 +28,6 @@ src/
 
 ## Diagrama de Clases
 
-Markdown
 ```mermaid
 classDiagram
     class Artesano {
