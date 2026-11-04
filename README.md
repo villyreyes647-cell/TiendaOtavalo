@@ -26,3 +26,45 @@ src/
 ├── datos/           # Manejador de persistencia de archivos CSV (ArchivoManager)
 └── Main.java        # Menú interactivo en consola y punto de entrada
 
+## 📐 Diagrama de Clases
+
+A continuación se muestra la estructura y relaciones principales entre las clases del sistema de la Tienda de Artesanías:
+
+```mermaid
+classDiagram
+    class Artesano {
+        - String id
+        - String nombre
+        - String comunidad
+        - String telefono
+        + getId() String
+        + getNombre() String
+        + getComunidad() String
+    }
+
+    class Artesania {
+        - String codigo
+        - String nombre
+        - String tipo
+        - double precioVenta
+        - int stockActual
+        - LocalDate fechaRecepcion
+        - String artesanoId
+        + calcularComisionUnitaria() double
+        + debeDevolverse() boolean
+        + setStock(int stock)
+        + getCodigo() String
+    }
+
+    class Movimiento {
+        - String idMovimiento
+        - String codigoArtesania
+        - String tipoMovimiento
+        - int cantidad
+        - LocalDate fecha
+        + getTipoMovimiento() String
+        + getCantidad() int
+    }
+
+    Artesano "1" --> "*" Artesania : posee
+    Artesania "1" --> "*" Movimiento : genera
