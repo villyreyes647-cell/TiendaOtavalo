@@ -117,4 +117,3 @@ classDiagram
     TiendaOtavalo "1" o-- "*" Movimiento
     TiendaOtavalo ..> ArchivoManager : usa
     Main ..> TiendaOtavalo : interactúa
-```
